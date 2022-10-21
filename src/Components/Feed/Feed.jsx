@@ -8,9 +8,9 @@ const Feed = () => {
   const [houses, setHouses] = useState(data);
   const [searchVal, setSearchVal] = useState("");
 
-  const [location, setLocation] = useState("");
-  const [priceRange, setPriceRange] = useState("");
-  const [placeType, setPlaceType] = useState("");
+  const [location, setLocation] = useState("all");
+  const [priceRange, setPriceRange] = useState("all");
+  const [placeType, setPlaceType] = useState("all");
 
   let priceRanges = [...new Set(data.map((data) => data.range))];
   priceRanges = priceRanges.sort();
@@ -61,15 +61,12 @@ const Feed = () => {
           data.type === placeType
       );
     }
-    // if (location !== "all" && placeType === "all" && priceRange === "all") {
-    //   filteredData = data.filter((data) => data.location === location);
-    // }
-    // if (priceRange !== "all") {
-    //   filteredData = data.filter((data) => data.range === priceRange);
-    // }
-    // if (placeType !== "all") {
-    //   filteredData = data.filter((data) => data.type === placeType);
-    // }
+    if (location !== "all")
+      filteredData = data.filter((data) => data.location === location);
+    if (priceRange !== "all")
+      filteredData = data.filter((data) => data.range === priceRange);
+    if (placeType !== "all")
+      filteredData = data.filter((data) => data.type === placeType);
 
     setHouses(filteredData);
     console.log(filteredData);

@@ -63,7 +63,7 @@ const hotelData = [
   {
     image:
       "https://images.pexels.com/photos/833192/pexels-photo-833192.jpeg?auto=compress&cs=tinysrgb&w=600",
-    price: "$2536",
+    price: "$2,536",
     title: "Cloudy Farmhouse",
     beds: 6,
     bath: 9,
@@ -112,7 +112,7 @@ const hotelData = [
   {
     image:
       "https://images.pexels.com/photos/221024/pexels-photo-221024.jpeg?auto=compress&cs=tinysrgb&w=600",
-    price: "$2,906",
+    price: "$2,618",
     title: "Wood House",
     beds: 2,
     bath: 1,
