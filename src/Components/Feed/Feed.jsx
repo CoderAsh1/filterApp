@@ -7,6 +7,7 @@ import data from "../../data";
 const Feed = () => {
   const [houses, setHouses] = useState(data);
   const [searchVal, setSearchVal] = useState("");
+  let singleData = [];
 
   const [location, setLocation] = useState("all");
   const [priceRange, setPriceRange] = useState("all");
@@ -47,9 +48,10 @@ const Feed = () => {
 
   function handleClick() {
     let filteredData = [];
-    if (location === "all" && priceRange === "all" && placeType === "all")
+    if (location === "all" && priceRange === "all" && placeType === "all") {
       filteredData = data;
-    else if (
+      setHouses(filteredData);
+    } else if (
       location !== "all" &&
       priceRange !== "all" &&
       placeType !== "all"
@@ -60,16 +62,29 @@ const Feed = () => {
           data.range === priceRange &&
           data.type === placeType
       );
+      setHouses(filteredData);
     }
-    if (location !== "all")
-      filteredData = data.filter((data) => data.location === location);
-    if (priceRange !== "all")
-      filteredData = data.filter((data) => data.range === priceRange);
-    if (placeType !== "all")
-      filteredData = data.filter((data) => data.type === placeType);
 
-    setHouses(filteredData);
-    console.log(filteredData);
+    if (location !== "all") {
+      singleData = singleData.length
+        ? singleData.filter((data) => data.location === location)
+        : data.filter((data) => data.location === location);
+      setHouses(singleData);
+    }
+
+    if (priceRange !== "all") {
+      singleData = singleData.length
+        ? singleData.filter((data) => data.range === priceRange)
+        : data.filter((data) => data.range === priceRange);
+      setHouses(singleData);
+    }
+
+    if (placeType !== "all") {
+      singleData = singleData.length
+        ? singleData.filter((data) => data.type === placeType)
+        : data.filter((data) => data.type === placeType);
+      setHouses(singleData);
+    }
   }
   return (
     <div className="feed">
