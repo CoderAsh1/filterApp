@@ -8,6 +8,10 @@ const Feed = () => {
   const [houses, setHouses] = useState(data);
   const [searchVal, setSearchVal] = useState("");
 
+  const [location, setLocation] = useState("");
+  const [priceRange, setPriceRange] = useState("");
+  const [placeType, setPlaceType] = useState("");
+
   let priceRanges = [...new Set(data.map((data) => data.range))];
   priceRanges = priceRanges.sort();
 
@@ -27,24 +31,10 @@ const Feed = () => {
   }
 
   function handleSelectRange(e) {
-    console.log(e.target.value);
-    if (e.target.value === "all") {
-      setHouses(data);
-    } else {
-      let filteredData = data.filter((data) => data.range === e.target.value);
-      setHouses(filteredData);
-      console.log(filteredData);
-    }
+    setPriceRange(e.target.value);
   }
   function handleSelectType(e) {
-    console.log(e.target.value);
-    if (e.target.value === "all") {
-      setHouses(data);
-    } else {
-      let filteredData = data.filter((data) => data.type === e.target.value);
-      setHouses(filteredData);
-      console.log(filteredData);
-    }
+    setPlaceType(e.target.value);
   }
 
   function handleDate(e) {
@@ -52,16 +42,37 @@ const Feed = () => {
   }
 
   function handleSelectLocation(e) {
-    console.log(e.target.value);
-    if (e.target.value === "all") {
-      setHouses(data);
-    } else {
-      let filteredData = data.filter(
-        (data) => data.location === e.target.value
+    setLocation(e.target.value);
+  }
+
+  function handleClick() {
+    let filteredData = [];
+    if (location === "all" && priceRange === "all" && placeType === "all")
+      filteredData = data;
+    else if (
+      location !== "all" &&
+      priceRange !== "all" &&
+      placeType !== "all"
+    ) {
+      filteredData = data.filter(
+        (data) =>
+          data.location === location &&
+          data.range === priceRange &&
+          data.type === placeType
       );
-      setHouses(filteredData);
-      console.log(filteredData);
     }
+    // if (location !== "all" && placeType === "all" && priceRange === "all") {
+    //   filteredData = data.filter((data) => data.location === location);
+    // }
+    // if (priceRange !== "all") {
+    //   filteredData = data.filter((data) => data.range === priceRange);
+    // }
+    // if (placeType !== "all") {
+    //   filteredData = data.filter((data) => data.type === placeType);
+    // }
+
+    setHouses(filteredData);
+    console.log(filteredData);
   }
   return (
     <div className="feed">
@@ -86,7 +97,7 @@ const Feed = () => {
               id="location"
               onChange={handleSelectLocation}
             >
-              <option value="all">Select Price Range</option>
+              <option value="all">Select Location</option>
               {locations.map((data, i) => (
                 <option value={data} key={i}>
                   {data}
@@ -127,7 +138,7 @@ const Feed = () => {
             </select>
           </div>
         </div>
-        <Button text="Search" />
+        <Button text="Search" handleClick={handleClick} />
       </section>
 
       {/* ------------------Feed section------------------------------ */}

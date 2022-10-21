@@ -6,7 +6,7 @@ import { BiBed } from "react-icons/bi";
 import { BiBath } from "react-icons/bi";
 
 const Card = ({ data }) => {
-  const { image, price, title, desc, beds, bath, square } = data;
+  const { image, price, title, location, beds, bath, square } = data;
   return (
     <div className="container">
       <img src={image} alt="" />
@@ -15,7 +15,7 @@ const Card = ({ data }) => {
           <span>{price}</span>/month
         </p>
         <h3>{title}</h3>
-        <h5>{desc}</h5>
+        <h5>{location}</h5>
         <div className="desc">
           <div className="beds">
             <BiBed />
