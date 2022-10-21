@@ -1,0 +1,26 @@
+.icon {
+  font-weight: 600;
+}
+nav {
+  width: 100vw;
+  background: rgb(251, 250, 255);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  ul {
+    display: flex;
+    flex-direction: row;
+    a {
+      margin-left: 1.6rem;
+      font-weight: 500;
+      padding: 0.1rem 0.7rem;
+      border-radius: 0.3rem;
+    }
+    .rent {
+      background: rgb(212, 209, 238);
+      color: rgb(109, 96, 237);
+    }
+  }
+}
